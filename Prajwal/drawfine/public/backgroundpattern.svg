@@ -1,0 +1,55 @@
+<svg width="1763" height="1256" viewBox="0 0 1763 1256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_144_223" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="59" width="1202" height="822">
+<path d="M-1.77474e-05 61.3172L1.58228 880.763L1201.58 878.446L1200 59.0001L-1.77474e-05 61.3172Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_144_223)">
+<g opacity="0.5">
+<path d="M1111.23 -443.765L1114.77 1387.7L1119.04 1387.69L1115.5 -443.773L1111.23 -443.765Z" fill="#D6D6D6"/>
+<path d="M1017.35 -443.584L1020.89 1387.88L1025.16 1387.87L1021.63 -443.592L1017.35 -443.584Z" fill="#D6D6D6"/>
+<path d="M923.47 -443.402L927.007 1388.06L931.281 1388.05L927.744 -443.411L923.47 -443.402Z" fill="#D6D6D6"/>
+<path d="M829.59 -443.221L833.127 1388.24L837.401 1388.23L833.864 -443.229L829.59 -443.221Z" fill="#D6D6D6"/>
+<path d="M735.711 -443.04L739.247 1388.42L743.521 1388.41L739.985 -443.048L735.711 -443.04Z" fill="#D6D6D6"/>
+<path d="M641.831 -442.858L645.367 1388.6L649.641 1388.59L646.105 -442.867L641.831 -442.858Z" fill="#D6D6D6"/>
+<path d="M547.951 -442.677L551.487 1388.78L555.761 1388.77L552.225 -442.686L547.951 -442.677Z" fill="#D6D6D6"/>
+<path d="M454.071 -442.496L457.607 1388.96L461.881 1388.96L458.345 -442.504L454.071 -442.496Z" fill="#D6D6D6"/>
+<path d="M360.191 -442.315L363.728 1389.15L368.002 1389.14L364.465 -442.323L360.191 -442.315Z" fill="#D6D6D6"/>
+<path d="M266.311 -442.133L269.847 1389.33L274.121 1389.32L270.584 -442.142L266.311 -442.133Z" fill="#D6D6D6"/>
+<path d="M172.431 -441.952L175.967 1389.51L180.241 1389.5L176.705 -441.96L172.431 -441.952Z" fill="#D6D6D6"/>
+<path d="M78.5507 -441.771L82.0872 1389.69L86.3611 1389.68L82.8247 -441.779L78.5507 -441.771Z" fill="#D6D6D6"/>
+<path d="M-295.855 135.929L-295.847 140.307L1492.15 136.854L1492.14 132.476L-295.855 135.929Z" fill="#D6D6D6"/>
+<path d="M-295.67 232.091L-295.661 236.469L1492.33 233.016L1492.32 228.638L-295.67 232.091Z" fill="#D6D6D6"/>
+<path d="M-295.484 328.253L-295.476 332.63L1492.52 329.178L1492.51 324.8L-295.484 328.253Z" fill="#D6D6D6"/>
+<path d="M-295.298 424.415L-295.29 428.793L1492.7 425.34L1492.7 420.962L-295.298 424.415Z" fill="#D6D6D6"/>
+<path d="M-295.113 520.577L-295.104 524.955L1492.89 521.502L1492.88 517.124L-295.113 520.577Z" fill="#D6D6D6"/>
+<path d="M-294.927 616.739L-294.919 621.117L1493.08 617.664L1493.07 613.286L-294.927 616.739Z" fill="#D6D6D6"/>
+<path d="M-294.741 712.901L-294.733 717.279L1493.26 713.826L1493.25 709.448L-294.741 712.901Z" fill="#D6D6D6"/>
+<path d="M-294.556 809.064L-294.547 813.442L1493.45 809.989L1493.44 805.611L-294.556 809.064Z" fill="#D6D6D6"/>
+</g>
+</g>
+<g filter="url(#filter0_f_144_223)">
+<ellipse cx="1331" cy="442" rx="379" ry="389" fill="white"/>
+</g>
+<g filter="url(#filter1_f_144_223)">
+<ellipse cx="872" cy="718" rx="310" ry="259" fill="white"/>
+</g>
+<g filter="url(#filter2_f_144_223)">
+<ellipse cx="418" cy="900" rx="310" ry="259" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_f_144_223" x="899" y="0" width="864" height="884" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="26.5" result="effect1_foregroundBlur_144_223"/>
+</filter>
+<filter id="filter1_f_144_223" x="464.8" y="361.8" width="814.4" height="712.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="48.6" result="effect1_foregroundBlur_144_223"/>
+</filter>
+<filter id="filter2_f_144_223" x="11.2" y="544.2" width="813.6" height="711.6" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="48.4" result="effect1_foregroundBlur_144_223"/>
+</filter>
+</defs>
+</svg>
