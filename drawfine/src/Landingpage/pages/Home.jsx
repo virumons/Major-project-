@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import hero1 from '../assets/hero1.svg'
 
 const Home = () => {
   return (
     <div
       className="bg-cover bg-center h-screen relative"
       style={{
-        backgroundImage: `url('src/assets/backgroundpattern.svg')`, // updated path
+        backgroundImage: `url('../assets/backgroundpattern.svg')`, // updated path
       }}
     >
       <section>
@@ -37,7 +38,7 @@ const Home = () => {
 
         <div className="absolute right-0 top-[-115px] flex justify-center items-center h-full">
           <img
-            src="src/assets/hero1.svg" 
+            src={hero1} 
             alt="Hero"
             className="max-w-full max-h-full object-contain"
           />
