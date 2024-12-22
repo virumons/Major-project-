@@ -9,16 +9,11 @@ import Dashboard from './Dashboards/Dashboard.jsx'
 import Workspace from './Dashboards/Workspace.jsx'
 import App from './Dashboards/App.jsx'
 import Auth from './Auth/Auth.jsx'
-import Landing from './Landingpage/App.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "/Auth",
     element: <Auth />,
   },
   {
