@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { dia, shapes, linkTools } from "jointjs";
 import "jointjs/dist/joint.css";
+import { useLocation } from "react-router-dom";
 
 const Workspace = () => {
+  const location = useLocation();
+  const { savedDiagram } = location.state || {};
   const [graph, setGraph] = useState(null);
   const [paper, setPaper] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
@@ -51,7 +54,21 @@ const Workspace = () => {
 
     setGraph(graphInstance);
     setPaper(paperInstance);
+    
   }, []);
+  if (savedDiagram) {
+    const img = new Image();
+    img.src = savedDiagram;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      alert("Diagram loaded successfully!");
+      // Further logic to deserialize if required.
+    };
+  }
 
   const addShape = (shapeType) => {
     if (!graph) return;
@@ -170,6 +187,33 @@ const Workspace = () => {
     }
   };
 
+  const saveDiagramLocally = () => {
+    const svgContent = paper.svg.cloneNode(true);
+  
+    // Convert the SVG to a JPG image
+    const canvas = document.createElement("canvas");
+    canvas.width = 800;
+    canvas.height = 600;
+    const ctx = canvas.getContext("2d");
+  
+    const img = new Image();
+    const svgData = new XMLSerializer().serializeToString(svgContent);
+    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+    const url = URL.createObjectURL(svgBlob);
+  
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0);
+      URL.revokeObjectURL(url);
+  
+      const dataURL = canvas.toDataURL("image/jpeg");  // Save as JPG
+      localStorage.setItem("umlDiagram", dataURL);  // Store as Data URL in localStorage
+      alert("Diagram saved locally as JPG!");
+    };
+  
+    img.src = url;
+  };
+  
+  
   return (
     <div className="flex flex-col h-screen">
       {/* Topbar */}
@@ -231,6 +275,9 @@ const Workspace = () => {
           </button>
           <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => downloadDiagram("jpeg")}>
             Download as JPEG
+          </button>
+          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => saveDiagramLocally()}>
+            Save Locally
           </button>
         </div>
       </div>
