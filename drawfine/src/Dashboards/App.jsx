@@ -1,6 +1,6 @@
 import { useState } from 'react'
 // import './App.css'
-import image from './images/vinland.png'
+import image from './images/sqlimg.png'
 import { Link } from 'react-router-dom'
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
           {/* Header Section */}
           <div class="flex justify-between items-center mb-6">
             <button class="text-gray-600 hover:text-gray-800 text-lg">
-              <Link to="/dashboard">
+              <Link to="Dashboard.jsx">
                Back
                </Link>
             </button>
@@ -59,12 +59,11 @@ function App() {
                     class="h-48 w-full object-cover"
                   />
                   <div class="p-4">
-                    {/* Diagram Details */}
                     <div class="flex justify-between items-center">
                       <span class='flex items-center'>
                       <span class="bg-purple-400 text-black h-8 w-8 flex items-center justify-center rounded-full align-middle">U
                       </span>
-                      <p class="font-medium text-gray-800 m-2">mama</p></span>
+                      <p class="font-medium text-gray-800 m-2">user</p></span>
                       <p class="text-[15px] text-gray-400">2 mins ago</p>
                     </div>
                     <p class="text-gray-600 text-start text-sm">

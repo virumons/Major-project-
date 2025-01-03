@@ -18,7 +18,7 @@ const Auth = () => {
           <div>
             <Link to='/' className='text-[20px] mb-2 flex flex-row'>
             {/* <img width="28" height="28" src="https://img.icons8.com/fluency-systems-regular/48/FFFFFF/home--v1.png" alt="home--v1"/> */}
-            <h1 className='ml-2'>Home</h1>
+            <b><h1 className='ml-2'>Home</h1></b>
             </Link>
           </div>
 

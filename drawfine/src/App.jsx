@@ -1,6 +1,9 @@
-import React from 'react'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Auth from "./Auth/Auth";
+import NoPage from "./pages/NoPage";
 
-const App = () => {
+export default function App() {
   return (
     <div>
       
@@ -8,4 +11,5 @@ const App = () => {
   )
 }
 
-export default App
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);

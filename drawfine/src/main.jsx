@@ -7,14 +7,19 @@ import {
 } from "react-router-dom";
 import Dashboard from './Dashboards/Dashboard.jsx'
 import Workspace from './Dashboards/Workspace.jsx'
-import App from './Dashboards/App.jsx'
+// import App from './Dashboards/App.jsx'
 import Auth from './Auth/Auth.jsx'
+import Temp from "./Dashboards/App.jsx"
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Auth />,
+  },
+  {
+    path: "/temp",
+    element: <Temp />,
   },
   {
     path: "/dashboard",
@@ -24,10 +29,7 @@ const router = createBrowserRouter([
     path: "/workspace",
     element: <Workspace />,
   },
-  {
-    path: "/App",
-    element: <App />,
-  },
+
   
   
 ])

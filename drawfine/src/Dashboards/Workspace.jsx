@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { dia, shapes, linkTools } from "jointjs";
+import { dia, shapes } from "jointjs";
 import "jointjs/dist/joint.css";
-import { useLocation } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 const Workspace = () => {
-  const location = useLocation();
-  const { savedDiagram } = location.state || {};
   const [graph, setGraph] = useState(null);
   const [paper, setPaper] = useState(null);
   const [selectedElement, setSelectedElement] = useState(null);
   const [shapeSize, setShapeSize] = useState(100);
   const [textSize, setTextSize] = useState(16);
   const [title, setTitle] = useState("Untitled");
+  const [user] = useAuthState(auth); // Get the authenticated user
 
   const shapeOptions = [
     { name: "Rectangle", type: "rect" },
@@ -54,21 +55,7 @@ const Workspace = () => {
 
     setGraph(graphInstance);
     setPaper(paperInstance);
-    
   }, []);
-  if (savedDiagram) {
-    const img = new Image();
-    img.src = savedDiagram;
-    img.onload = () => {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0);
-      alert("Diagram loaded successfully!");
-      // Further logic to deserialize if required.
-    };
-  }
 
   const addShape = (shapeType) => {
     if (!graph) return;
@@ -146,74 +133,35 @@ const Workspace = () => {
     }
   };
 
-  const downloadDiagram = (format) => {
-    const svgContent = paper.svg.cloneNode(true);
+  const saveDiagramToFirestore = async () => {
+    if (!paper) {
+      alert("No diagram to save!");
+      return;
+    }
 
-    if (format === "svg") {
-      const svgData = new XMLSerializer().serializeToString(svgContent);
-      const blob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `${title}.svg`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      const canvas = document.createElement("canvas");
-      canvas.width = 800;
-      canvas.height = 600;
-      const ctx = canvas.getContext("2d");
+    if (!user) {
+      alert("You must be logged in to save diagrams.");
+      return;
+    }
 
-      const img = new Image();
-      const svgData = new XMLSerializer().serializeToString(svgContent);
-      const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-      const url = URL.createObjectURL(svgBlob);
+    // Get the SVG content
+    const svgElement = paper.svg.cloneNode(true);
+    const svgData = new XMLSerializer().serializeToString(svgElement);
 
-      img.onload = () => {
-        ctx.drawImage(img, 0, 0);
-        URL.revokeObjectURL(url);
-        if (format === "png" || format === "jpeg") {
-          const dataURL = canvas.toDataURL(`image/${format}`);
-          const link = document.createElement("a");
-          link.href = dataURL;
-          link.download = `${title}.${format}`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-      };
-      img.src = url;
+    try {
+      const userDocRef = doc(db, "users", user.email);
+      await setDoc(
+        userDocRef,
+        { diagrams: { [title]: svgData } },
+        { merge: true }
+      );
+      alert("Diagram saved successfully as SVG!");
+    } catch (error) {
+      console.error("Error saving diagram:", error);
+      alert("Failed to save the diagram. Please try again.");
     }
   };
 
-  const saveDiagramLocally = () => {
-    const svgContent = paper.svg.cloneNode(true);
-  
-    // Convert the SVG to a JPG image
-    const canvas = document.createElement("canvas");
-    canvas.width = 800;
-    canvas.height = 600;
-    const ctx = canvas.getContext("2d");
-  
-    const img = new Image();
-    const svgData = new XMLSerializer().serializeToString(svgContent);
-    const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
-    const url = URL.createObjectURL(svgBlob);
-  
-    img.onload = () => {
-      ctx.drawImage(img, 0, 0);
-      URL.revokeObjectURL(url);
-  
-      const dataURL = canvas.toDataURL("image/jpeg");  // Save as JPG
-      localStorage.setItem("umlDiagram", dataURL);  // Store as Data URL in localStorage
-      alert("Diagram saved locally as JPG!");
-    };
-  
-    img.src = url;
-  };
-  
-  
   return (
     <div className="flex flex-col h-screen">
       {/* Topbar */}
@@ -266,18 +214,9 @@ const Workspace = () => {
           <button className="w-full py-2 bg-red-500 text-white rounded mt-2" onClick={handleDeleteElement}>
             Delete Selected
           </button>
-          <h3 className="text-lg font-semibold mt-4">Download</h3>
-          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => downloadDiagram("svg")}>
-            Download as SVG
-          </button>
-          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => downloadDiagram("png")}>
-            Download as PNG
-          </button>
-          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => downloadDiagram("jpeg")}>
-            Download as JPEG
-          </button>
-          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={() => saveDiagramLocally()}>
-            Save Locally
+          <h3 className="text-lg font-semibold mt-4">Save</h3>
+          <button className="w-full py-2 bg-green-500 text-white rounded mt-2" onClick={saveDiagramToFirestore}>
+            Save Diagram as SVG
           </button>
         </div>
       </div>
